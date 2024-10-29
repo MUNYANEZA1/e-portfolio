@@ -1,15 +1,21 @@
-let count = 0;
-let counts = document.getElementById('count');
-let message = document.getElementById('message');
+// Error Handling (Jathniel) 
+document.getElementById("contact-form").addEventListener("submit", function(event) { 
+  event.preventDefault(); 
+  let name = document.getElementById("name").value; 
+  let email = document.getElementById("email").value; 
+  let message = document.getElementById("message").value; 
 
-document.getElementById('btn').onclick = ()=>{
-  count += 1;
+  if (!name || !email || !message) { 
+      alert("All fields are required!"); 
+  } else if (!validateEmail(email)) {
+    alert("Please enter a valid email address!"); 
+  } else { 
+      alert("Form submitted successfully!"); 
+       
+  } 
+}); 
 
-  if(count < 3) {
-    counts.innerText = count
-  } else {
-    counts.style.display = "none";
-    message.innerText = 'Please Stop Cliking Me!'
-  }
-  
+function validateEmail(email) { 
+  let re = /\S+@\S+\.\S+/; 
+  return re.test(email); 
 }
